@@ -48,6 +48,15 @@
     return variants;
   }
 
+  /**
+   * Return fibinacci sequence
+   *
+   * @returns List of variants
+   */
+  function fibinacciVarients() {
+    return [0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100];
+  }
+
   const App = {
     data() {
       return {
@@ -57,7 +66,7 @@
         openDelayCounter: 0,
         playerId: "",
         playerName: "",
-        variants: [...randomVariants(), "?"],
+        variants: [...fibinacciVarients(), "?"],
         vote: null,
         averageScore: 0,
       };
@@ -75,7 +84,7 @@
 
       // Asking the user to enter the player's name if it is not defined.
       if (!playerName) {
-        playerName = "Harry Potter";
+        playerName = "";
         let newName = prompt("Enter your name", playerName);
         if (newName) {
           playerName = newName;
@@ -227,7 +236,7 @@
             this.vote = null;
             this.cards.splice(1, this.cards.length);
             this.cards[0].vote = null;
-            this.variants = [...randomVariants(), "?"];
+            this.variants = [...fibinacciVariants(), "?"];
 
             this.socket.send(
               JSON.stringify({
